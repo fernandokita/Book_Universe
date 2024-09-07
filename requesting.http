@@ -1,1 +1,5 @@
 POST http://localhost:3000/book
+GET  http://localhost:3000/book
+###
+POST http://localhost:3000/author
+GET  http://localhost:3000/author

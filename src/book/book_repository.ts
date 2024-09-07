@@ -8,6 +8,11 @@ export class BookRepository {
 
     }
 }
-async create(book:Book){
-
+async create(book: BookEntity){
+    return this.ps.book.create({
+        data: book as any,
+    })
+}
+async delete(book:BookEntity){
+    return this.ps.book.delete()
 }

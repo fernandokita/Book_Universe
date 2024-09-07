@@ -6,6 +6,6 @@ import { BookRepository } from './book_repository';
 @Module({
   controllers: [BookController],
   imports:[DbModule],
-  providers:[BookRepository],
+  providers:[BookRepository]
 })
 export class BookModule {}
