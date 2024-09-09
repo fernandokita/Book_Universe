@@ -1,5 +1,4 @@
 import { Entity } from './entity.interface';
-
 import { Injectable, UnprocessableEntityException } from '@nestjs/common';
 import { PrismaService } from 'src/db/prisma.service';
 
@@ -20,4 +19,7 @@ async create(supplier: Entity){
     return this.ps.supplier.create(){
         data: supplier as any;
     }
+}
+async delete(supplier: Entity){
+    return this.ps.supplier.delete();
 }
