@@ -1,10 +1,10 @@
 import { Controller, Post,Body, Get, Put} from '@nestjs/common';
-import { Entity } from './entity.interface';
+import Supplier from './entity.interface';
 
 @Controller('supplier')
 export class SupplierController {
     @Post()
-    async create(@Body() supplier: Entity){
+    async create(@Body() supplier: Supplier){
         return supplier;
     }
     @Get("id")

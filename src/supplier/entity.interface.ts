@@ -1,4 +1,4 @@
-export interface Entity {
-    id: Number
-    name: String 
+export default interface Supplier {
+    id: number
+    name: string 
 }

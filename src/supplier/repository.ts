@@ -1,25 +1,35 @@
-import { Entity } from './entity.interface';
-import { Injectable, UnprocessableEntityException } from '@nestjs/common';
-import { PrismaService } from 'src/db/prisma.service';
 
-@UnprocessableEntityException
-interface Supplier {
-    id: number;
-    name: string;
-    // outros campos necessários
-  }
+import { Injectable } from '@nestjs/common';
+import { PrismaService } from 'src/db/prisma.service';
+import Supplier from './entity.interface';
 
 @Injectable()
-export class Repository {
-    constructor(private ps: PrismaService){
+export class SupplierRepository {
+    constructor(private prismaService: PrismaService) {}
 
+    async create(supplier: Supplier): Promise<Supplier> {
+        return this.prismaService.supplier.create({
+            data: {
+                id: supplier.id,
+                name: supplier.name
+            }
+        });
     }
-}
-async create(supplier: Entity){
-    return this.ps.supplier.create(){
-        data: supplier as any;
+    async delete(supplierId: number): Promise<Supplier> {
+        return this.prismaService.supplier.delete({
+            where: { 
+                id: supplierId 
+            }
+        });
     }
-}
-async delete(supplier: Entity){
-    return this.ps.supplier.delete();
+    async findOne(supplierId : number){
+        return this.prismaService.supplier.findUnique({
+            where:{
+                id: supplierId
+            }
+        })
+    }
+    async findSupplier(){
+        return this.prismaService.supplier.findMany()
+    }
 }
