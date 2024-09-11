@@ -1,15 +1,18 @@
-import { Controller, Post, Get, Body } from '@nestjs/common';
-import { Book } from '@prisma/client';
-import BookEntity from './book.entity.interface';
+import { Controller, Post, Get, Body, Param } from '@nestjs/common';
+import Book from './book.interface';
 
 @Controller('book')
 export class BookController {
     @Post()
-    async createBook(@Body() book:BookEntity){
-        return book;
+    async createBook(@Body() body){
+        return body;
     }
     @Get("id")
-    async findBook(){
-        return "id"
+    async findBook(@Param(":id") params){
+        return "Book ${id}"
+    }
+    @Get()
+    async findAll(){
+        return "List of books"
     }
 }
