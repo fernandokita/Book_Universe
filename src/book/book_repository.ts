@@ -9,12 +9,15 @@ export class BookRepository {
 
     }
 }
-async create(book: ): Promise<Book>{
+async create(book: Book): Promise<Book>{
     return this.prismaService.book.create({
         data: book as any,
     })
 }
 async delete(book: Book): Promise<Book>{
-    return this.prismaService.book.delete()
+    return this.prismaService.book.delete({
+        where: { id: book.id } // Assume que `Book` tem um campo `id`
+    });
 }
+
 
