@@ -1,5 +1,7 @@
+import { UpdateBookDto } from './update-book-dto';
 import { Controller, Post, Get, Body, Param, HttpCode, HttpStatus, Patch, Delete } from '@nestjs/common';
 import { BookService } from './book.service';
+import { CreateBookDto } from './create-book-dto';
 
 @Controller('book')
 export class BookController {
@@ -8,8 +10,8 @@ export class BookController {
     }
     @Post()
     @HttpCode(HttpStatus.NO_CONTENT)
-    async create(@Body() body){
-        return this.bookService.create;
+    async create(@Body() createBookDto: CreateBookDto){
+        return this.bookService.create(createBookDto);
     }
     @Get("id")
     async findOne(@Param(":id") params){
@@ -20,8 +22,8 @@ export class BookController {
         return this.bookService.findAll;
     }
     @Patch("id")
-    async update(){
-        return this.bookService.update;
+    async update(id: string, updateBookDto: UpdateBookDto){
+        return this.bookService.update(id, updateBookDto);
     }
     @Delete("id")
     async remove(){
